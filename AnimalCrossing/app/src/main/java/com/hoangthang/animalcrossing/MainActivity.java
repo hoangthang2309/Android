@@ -20,13 +20,31 @@ public class MainActivity extends AppCompatActivity {
     CheckBox cBox1, cBox2, cBox3;
     TextView myScore;
     int score = 100;
+
+    private void enableCheckBox(){
+        cBox1.setEnabled(true);
+        cBox2.setEnabled(true);
+        cBox3.setEnabled(true);
+    }
+    private void disableCheckBox(){
+        cBox1.setEnabled(false);
+        cBox2.setEnabled(false);
+        cBox3.setEnabled(false);
+    }
+    private void disableSeekBar(){
+        sBar1.setEnabled(false);
+        sBar2.setEnabled(false);
+        sBar3.setEnabled(false);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         create();
+        disableSeekBar();
         myScore.setText("score: "+score);
+
         final CountDownTimer count = new CountDownTimer(60000,100) {
             @Override
             public void onTick(long l) {
@@ -36,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 int sb2 = rd.nextInt(number);
                 int sb3 = rd.nextInt(number);
                 if(sBar1.getProgress() >= sBar1.getMax()){
-                    Toast.makeText(MainActivity.this, "Dog win", Toast.LENGTH_SHORT);
                     if(cBox1.isChecked()){
                         score += 10;
                     }else {
@@ -45,9 +62,10 @@ public class MainActivity extends AppCompatActivity {
                     myScore.setText("score: "+score);
                     play.setVisibility(View.VISIBLE);
                     this.cancel();
+                    enableCheckBox();
+                    Toast.makeText(MainActivity.this, "Dog Win", Toast.LENGTH_LONG).show();
                 }
                 if(sBar2.getProgress() >= sBar2.getMax()){
-                    Toast.makeText(MainActivity.this, "Bird win", Toast.LENGTH_SHORT);
                     if(cBox2.isChecked()){
                         score += 10;
                     }else {
@@ -56,9 +74,10 @@ public class MainActivity extends AppCompatActivity {
                     myScore.setText("score: "+score);
                     play.setVisibility(View.VISIBLE);
                     this.cancel();
+                    enableCheckBox();
+                    Toast.makeText(MainActivity.this, "Bird win", Toast.LENGTH_LONG).show();
                 }
                 if(sBar3.getProgress() >= sBar3.getMax()){
-                    Toast.makeText(MainActivity.this, "Turtle win", Toast.LENGTH_SHORT);
                     if(cBox3.isChecked()){
                         score += 10;
                     }else {
@@ -67,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                     myScore.setText("score: "+score);
                     play.setVisibility(View.VISIBLE);
                     this.cancel();
+                    enableCheckBox();
+                    Toast.makeText(MainActivity.this, "Turtle win", Toast.LENGTH_LONG).show();
                 }
                 sBar1.setProgress(sBar1.getProgress()+sb1);
                 sBar2.setProgress(sBar2.getProgress()+sb2);
@@ -88,8 +109,9 @@ public class MainActivity extends AppCompatActivity {
                     sBar3.setProgress(0);
                     play.setVisibility(View.INVISIBLE);
                     count.start();
+                    disableCheckBox();
                 }else{
-                    Toast.makeText(MainActivity.this, "bạn chưa đặt cược", Toast.LENGTH_LONG);
+                    Toast.makeText(MainActivity.this, "bạn chưa đặt cược", Toast.LENGTH_LONG).show();
                 }
             }
         });

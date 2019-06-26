@@ -32,6 +32,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <SeekBar
+        android:progressDrawable="@android:color/transparent"
         android:id="@+id/seekBar1"
         android:thumb="@drawable/icon_dog"
         android:layout_width="match_parent"
@@ -42,6 +43,7 @@
         app:layout_constraintStart_toEndOf="@id/checkBox1" />
 
     <SeekBar
+        android:progressDrawable="@android:color/transparent"
         android:id="@+id/seekBar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,6 +54,7 @@
         app:layout_constraintStart_toEndOf="@id/checkBox2" />
 
     <SeekBar
+        android:progressDrawable="@android:color/transparent"
         android:id="@+id/seekBar3"
         android:thumb="@drawable/icon_turtle"
         android:layout_width="match_parent"
